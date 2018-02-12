@@ -1,0 +1,9 @@
+body {
+    background-color: #18BC9C;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    
+}
+
+#left {
+    float: left;
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>The Questioners</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
+    <link rel="stylesheet" href="bower_components/mathquill-0.10.1/mathquill.css" />
+
+</head>
+
+<body>
+    <p>Solve
+        <span id="problem">ax^2 + (bx + c) = 0</span>.
+    </p>
+    <p>
+        <span id="answer">x=</span>
+    </p>
+
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="bower_components/mathquill-0.10.1/mathquill.js"></script>
+
+
+</body>
+
+</html>
+
+<script>
+
+    // Mathquill
+    var MQ = MathQuill.getInterface(2);
+    var problemSpan = document.getElementById('problem');
+    MQ.StaticMath(problemSpan);
+
+    var answerSpan = document.getElementById('answer');
+    var answerMathField = MQ.MathField(answerSpan, {
+        handlers: {
+            edit: function () {
+                var enteredMath = answerMathField.latex(); // Get entered math in LaTeX format
+                checkAnswer(enteredMath);
+            }
+        }
+    });
+
+</script>
