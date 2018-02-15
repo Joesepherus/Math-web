@@ -1,0 +1,159 @@
+<div class="container">
+    <h3>Basic Navbar Example</h3>
+    <p>A navigation bar is a navigation header that is placed at the top of the page.</p>
+    <p>Solve
+        <span id="problem">ax^2 + (bx + c) = 0</span>.
+    </p>
+    <p>
+        <span id="answer">x=</span>
+    </p>
+</div>
+
+<div class="container todolist">
+    <div class="row">
+
+        <div class="col-md-12" >
+            <div class="w3-card-4">
+                <div class="w3-container w3-green">
+                    <h2>New task</h2>
+                </div>
+                <form name="newTaskForm" id="newTaskForm" class="w3-container newTaskForm" method="post" ng-submit="addProblem()">
+                    <p>
+                        <label class="newTaskType">Description:</label>
+                        <input class="w3-input" name="newTaskTitle" id="inputTitle" type="text" ng-model="problem.description" required>
+                    </p>
+                    <p>
+                        <label class="newTaskType">Steps:</label>
+                        <input class="w3-input" name="newTaskDescription" id="inputDescription" type="text" ng-model="problem.steps" required>
+                    </p>
+                </form>
+                <button class="col-md-2 addBtn btn btn-success" form="newTaskForm" type="submit" onclick="newElement()">Submit</button>
+            </div>
+
+        </div>
+
+        <div class="col-md-10">
+            <h2>Tasks</h2>
+        </div>
+
+
+        <div class="col-md-1 selector">
+            <select id="selector" ng-model="selectedScreenIndex" ng-options="view.select for view in views" ng-change="select()">
+                <option value="">none</option>
+
+            </select>
+        </div>
+
+        <div class="col-md-12">
+            <p ng-model="numberOfQaA">Number of tasks: {{selectedItem.tasks.length}}</p>
+        </div>
+
+        <ul ng-init="getAllProblems()" class="col-md-12" id="myUL">
+            <div ng-repeat="problem in allProblems.slice().reverse()">
+                <li class="default dropbtn2">
+                    <div>
+                        <span>{{problem.description}}</span>
+                    </div>
+                    <div class="dropdown-content" id="drop">
+                        <p class="label label-default">Posted {{problem.create_date}}</p>
+                        <p class="label label-default">{{problem.steps}}</p>
+                        <p class="label label-default">{{problem.state}}</p>
+                        <p class="dropPara">{{problem.description}}</p>
+                        <div class="modal-button">
+                            <button type="button" class="btn btn-info btn-md detailsBtn" data-toggle="modal" data-target="#detailsModal">Details</button>
+                            <button id="modalButton" type="button" class="btn btn-success btn-md editBtn" data-toggle="modal" data-target="#editModal"
+                                onclick="editModalForm(this)" ng-click="editModalForm(task._id)">Edit task</button>
+                            <button type="button" class="btn btn-danger btn-md deleteBtn" ng-click="deletePermanentlyTask(task._id, task)">Delete permanently</button>
+                        </div>
+                    </div>
+                </li>
+            </div>
+
+        </ul>
+
+        <div class="container">
+            <!-- Trigger the modal with a button -->
+            <!-- Modal -->
+            <div class="modal fade" id="editModal" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div id="editModalHeader" class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Edit Task</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form ng-model="allTasks" id="editTaskForm" class="w3-container" method="post" ng-submit="editTask(allTasks[url])">
+                                <p>
+                                    <label class="newTaskType">Title:</label>
+                                    <input id="test_input" class="w3-input" name="editTitle" type="text" ng-model="task.title" required>
+                                </p>
+                                <p>
+                                    <label class="newTaskType">Description:</label>
+                                    <input class="w3-input" name="editDescription" ng-model="task.description" type="text" required>
+                                </p>
+                                <div>
+                                    <label class="newTaskType">Type</label>
+                                </div>
+                                <select name="editType" id="editSelect" ng-model="task.type" required>
+                                    <option value=""></option>
+                                    <option value="work">work</option>
+                                    <option value="personal">personal</option>
+                                    <option value="school">school</option>
+                                    <option value="watch later">watch later</option>
+                                </select>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="col-md-2 editBtn btn btn-success" form="editTaskForm" type="submit">Submit</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <!-- Trigger the modal with a button -->
+            <!-- Modal -->
+            <div class="modal fade" id="detailsModal" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div id="detailsModalHeader" class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Tasks details</h4>
+                        </div>
+                        <div id="detailsModalBody" class="modal-body detailsModal">
+                            <p>
+                                <label class="newTaskType">Title:</label>
+                                <input id="test_input" class="w3-input" name="detailsTitle" type="text" ng-model="task.title" required>
+                            </p>
+                            <p>
+                                <label class="newTaskType">Description:</label>
+                                <input class="w3-input" name="detailsDescription" ng-model="task.description" type="text" required>
+                            </p>
+                            <p>
+                                <label class="newTaskType">Type:</label>
+                                <input class="w3-input" name="detailsType" ng-model="task.type" type="text" required>
+                            </p>
+                            <p>
+                                <label class="newTaskType">State:</label>
+                                <input class="w3-input" name="detailsState" ng-model="task.state" type="text" required>
+                            </p>
+                            <p>
+                                <label class="newTaskType">Date added:</label>
+                                <input class="w3-input" name="detailsDateAdded" ng-model="task.create_date" type="text" required>
+                            </p>
+                            <p>
+                                <label class="newTaskType">Date completed:</label>
+                                <input class="w3-input" name="detailsDateCompleted" ng-model="task.completed_date" type="text" required>
+                            </p>
+                        </div>
+                        <div id="detailsModalFooter" class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

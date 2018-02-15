@@ -1,0 +1,26 @@
+{
+  "name": "Charted",
+  "version": "1.0.0",
+  "description": "Web app for music enthusiast",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "asyncawait": "^1.0.6",
+    "body-parser": "*",
+    "bootstrap-year-calendar": "*",
+    "cheerio": "*",
+    "express": "*",
+    "google-auth-library": "^1.0.0",
+    "googleapis": "^23.0.2",
+    "mongoose": "*",
+    "node-schedule": "*",
+    "nodemailer": "*",
+    "request": "*",
+    "winston": "*",
+    "youtube-api": "^2.0.9"
+  },
+  "author": "Jozef Maloch",
+  "license": "ISC"
+}
