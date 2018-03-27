@@ -4,12 +4,12 @@ import './App.css';
 import axios from 'axios';
 import Footer from './footer';
 import Header from './header';
-import Example from './example';
-import Steps from './steps';
-import Assignment from './assignment';
+import Assignment from './example/assignment';
 import RegisterModal from './registerModal';
+import ExampleList from './example/exampleList';
 
 class App extends Component {
+
   state = {
     examples: [{
       id: "",
@@ -17,60 +17,30 @@ class App extends Component {
       description: "",
       steps: [],
       state: ""
-    }]
+    }],
+    examplesNumber: "",
   }
 
   componentDidMount() {
     fetch('/api/problem')
       .then((response) => response.json())
-      .then(examples => this.setState({
+      .then(examples => {
+        this.setState({
+          examplesNumber: examples.length + 1
+        })
+        console.log(this.state.examplesNumber);
+        this.setState({
         examples: examples
-      }))
-      .then(console.log(this.state.examples))
+      })})
   }
 
   render() {
-    const EXAMPLES = [
-      {
-        id: '1',
-        assignment: '5x+2=7',
-        assignmentText: 'Solve for x.',
-        steps: ['5x=5', 'x=1'],
-        rating: '5'
-      },
-      {
-        id: '2',
-        assignment: '7x-5=44',
-        assignmentText: 'Solve for x.',
-        steps: ['7x=49', 'x=7'],
-        rating: '4'
-      },
-      {
-        id: '3',
-        assignment: '2x+2=7-5x',
-        assignmentText: 'Solve for x.',
-        steps: ['7x=5', 'x=5/7'],
-        rating: '1'
-      },
-    ];
+
     return (
       <div className="App" >
         <Header />
-        {
-          EXAMPLES.map(example =>
-            <Example
-              example={example}
-            />
-          )
-        }
-        {
-          this.state.examples.map(example =>
-            <Example
-              example={example}
-            />
-          )
-        }
-        <RegisterModal />
+        <ExampleList examples={this.state.examples} />
+        <RegisterModal id={this.state.examplesNumber} />
         <Footer />
       </div>
     );
