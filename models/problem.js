@@ -4,16 +4,17 @@ var schema = mongoose.Schema({
 	id:{
 		type: String,
 	},
-	description:{
+	assignment:{
 		type: String,
-		required: true
 	},
-	steps:{
-		type: Array,
-		required: true
+	assignmentText:{
+		type: String,
 	},
 	rating:{
 		type: String,
+	},
+	steps: {
+		type: Array,
 	},
 	state:{
 		type: String,
@@ -23,7 +24,6 @@ var schema = mongoose.Schema({
 	},
 	create_date:{
 		type: Date,
-		default: Date.now
 	},
 	completed_date:{
 		type: Date,
@@ -45,9 +45,9 @@ module.exports.getProblemById = function(problemId, callback){
 
 module.exports.addProblem = function(problem, callback){	
 	var json = {
-		description: problem.description,
+		assignment: problem.assignment,
         steps: problem.steps,
-        rating: problem.rating,
+        assignmentText: problem.assignmentText,
 		state: "inprogress",
 	}
 	Problem.create(json, callback);
@@ -76,4 +76,3 @@ module.exports.deletePermanentlyProblem = function(id, callback){
 	var query = {_id: id};
 	Problem.deleteOne(query, callback);
 }
-

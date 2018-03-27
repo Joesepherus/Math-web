@@ -1,0 +1,26 @@
+.header {
+    background-color: #001040;
+    padding-left: 200px;
+    height: 60px;
+}
+
+.header__icon {
+    height: 50px;
+    width: 50px;
+}
+
+.header__center-div {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.header__container {
+    height: inherit;
+}
+
+.header__text {
+    font-size: 20px;
+    color: #00BF30!important;
+    margin-left: 70px;
+}

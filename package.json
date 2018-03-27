@@ -1,26 +1,33 @@
 {
-  "name": "Charted",
+  "name": "Math-web",
   "version": "1.0.0",
-  "description": "Web app for music enthusiast",
+  "description": "React Web App about Maths",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "nodemon server.js",
+    "client": "node start-client.js"
   },
   "dependencies": {
     "asyncawait": "^1.0.6",
     "body-parser": "*",
+    "bootstrap": "^4.0.0",
     "bootstrap-year-calendar": "*",
     "cheerio": "*",
     "express": "*",
-    "google-auth-library": "^1.0.0",
-    "googleapis": "^23.0.2",
+    "jquery": "^3.3.1",
     "mongoose": "*",
     "node-schedule": "*",
     "nodemailer": "*",
+    "popper.js": "^1.12.9",
     "request": "*",
     "winston": "*",
     "youtube-api": "^2.0.9"
   },
   "author": "Jozef Maloch",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^3.5.1",
+    "create-react-class": "^15.6.3"
+  }
 }
