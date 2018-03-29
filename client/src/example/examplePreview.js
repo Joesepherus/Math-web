@@ -13,12 +13,19 @@ class Example extends Component {
     }
   }
 
+  handleClick(e) {
+    const { selectExample } = this.props;
+    e.preventDefault();
+    selectExample(this.props.example.id);
+  }
+
   render() {
     return (
       <div>
         <Assignment
           example={this.props.example}
         />
+        <a href="" onClick={this.handleClick.bind(this)}>solve</a>
       </div>
     );
   }

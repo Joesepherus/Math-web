@@ -2,14 +2,20 @@ import React, { Component } from 'react';
 import Steps from '../steps';
 import Assignment from './assignment';
 
-class Example extends Component {
+class ExampleShowOne extends Component {
   constructor(props) {
     super(props);
     this.state = {
       stepsShown: 0,
-      maxSteps: this.props.example.steps.length
+      maxSteps: 0
     }
     this.nextClick = this.nextClick.bind(this);
+  }
+
+  back(e) {
+    const { example, selectExample } = this.props;
+    e.preventDefault();
+    selectExample(example.id);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -35,12 +41,13 @@ class Example extends Component {
   render() {
     return (
       <div>
+        <button onClick={this.back.bind(this)}>back</button>
         <Assignment
           example={this.props.example}
         />
         <Steps
           example={this.props.example}
-          stepsShown={this.state.stepsShown}
+          stepsShown={this.props.example.stepsShown}
         />
         <button onClick={this.prevClick.bind(this)}>Previous step</button>
         <button onClick={this.nextClick.bind(this)}>Next step</button>
@@ -49,4 +56,4 @@ class Example extends Component {
   }
 }
 
-export default Example;  
+export default ExampleShowOne;  

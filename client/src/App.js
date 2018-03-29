@@ -7,6 +7,7 @@ import Header from './header';
 import Assignment from './example/assignment';
 import RegisterModal from './registerModal';
 import ExampleList from './example/exampleList';
+import ExampleFindOne from './example/exampleFindOne';
 
 class App extends Component {
 
@@ -19,6 +20,9 @@ class App extends Component {
       state: ""
     }],
     examplesNumber: "",
+    showList: true,
+    showOne: false,
+    selectedExampleId: ""
   }
 
   componentDidMount() {
@@ -28,10 +32,23 @@ class App extends Component {
         this.setState({
           examplesNumber: examples.length + 1
         })
-        console.log(this.state.examplesNumber);
         this.setState({
-        examples: examples
-      })})
+          examples: examples
+        })
+      })
+  }
+
+  selectExample = (exampleId) => {
+    this.setState({
+      selectedExampleId: exampleId
+    });
+    this.setState({
+      showList: !this.state.showList
+    })
+    this.setState({
+      showOne: !this.state.showOne
+    })
+    console.log(this.state.selectedExampleId);
   }
 
   render() {
@@ -39,7 +56,13 @@ class App extends Component {
     return (
       <div className="App" >
         <Header />
-        <ExampleList examples={this.state.examples} />
+        {this.state.showList && <ExampleList 
+        examples={this.state.examples} 
+        selectExample={this.selectExample} />}
+        {this.state.showOne && <ExampleFindOne
+        examples={this.state.examples}
+        selectedExampleId={this.state.selectedExampleId}
+        selectExample={this.selectExample} />}
         <RegisterModal id={this.state.examplesNumber} />
         <Footer />
       </div>

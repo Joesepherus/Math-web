@@ -11,7 +11,6 @@ class RegisterModal extends Component {
     this.change = this.change.bind(this);
     this.changeText = this.changeText.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    console.log(this.props.id);
   }
 
   change(event) {
@@ -23,7 +22,6 @@ class RegisterModal extends Component {
   }
 
   handleSubmit(e) {
-    console.log(this.props.id);
     e.preventDefault();
     axios.post("/api/problem", {
       id: this.props.id,

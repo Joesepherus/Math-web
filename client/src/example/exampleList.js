@@ -7,13 +7,17 @@ class ExampleList extends Component {
   constructor(props) {
     super(props);
   }
-  
+
   render() {
+    
     return (
       this.props.examples.map(example =>
-        <ExamplePreview
-          example={example}
-        />
+        <div>
+          <ExamplePreview
+            example={example}
+            selectExample={this.props.selectExample}
+          />
+        </div>
       )
     )
   }
