@@ -1,22 +1,17 @@
 import React, { Component } from 'react';
-import Steps from '../steps';
-import Assignment from './assignment';
 import ExampleShowOne from './exampleShowOne';
 
 
 class ExampleFindOne extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   renderSelectedExample() {
     const { selectedExampleId, examples } = this.props;
     const example = examples.filter(example => {
-
       if (example.id === selectedExampleId) {
         console.log(example);
         return example;
       }
+      return '';
     });
     console.log(example[0]);
 

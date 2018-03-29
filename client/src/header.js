@@ -7,7 +7,7 @@ class Header extends Component {
       <nav className="navbar-inverse navbar-default header" >
           <div className="navbar-header header__center-div">
             <a data-toggle="tab" href="#!/intro">
-              <img className="header__icon" src="favicon.ico"></img>
+              <img alt="header_icon" className="header__icon" src="favicon.ico"></img>
             </a>
             <p className="header__text">React Web App</p>
             

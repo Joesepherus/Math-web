@@ -4,10 +4,6 @@ import ExamplePreview from './examplePreview';
 
 class ExampleList extends Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     
     return (

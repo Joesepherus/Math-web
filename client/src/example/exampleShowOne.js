@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Steps from '../steps';
+import Steps from './steps';
 import Assignment from './assignment';
 
 class ExampleShowOne extends Component {

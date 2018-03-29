@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import axios from 'axios';
 import Footer from './footer';
 import Header from './header';
-import Assignment from './example/assignment';
 import ExampleAdd from './example/exampleAdd';
 import ExampleList from './example/exampleList';
 import ExampleFindOne from './example/exampleFindOne';

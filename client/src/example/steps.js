@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 
 class Steps extends Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     var steps = this.props.example.steps;
     var items = steps.slice(0, this.props.stepsShown);
