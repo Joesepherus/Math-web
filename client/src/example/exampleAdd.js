@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-class RegisterModal extends Component {
+class ExampleAdd extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -36,9 +36,15 @@ class RegisterModal extends Component {
       });
   }
 
+  back(e) {
+    e.preventDefault();
+    this.props.exampleAdd();
+  }
+
   render() {
     return (
       <div>
+        <button onClick={this.back.bind(this)}>back</button>
         <form onSubmit={this.handleSubmit} method="get">
           Assignment:<br />
           <input type="text"
@@ -59,4 +65,4 @@ class RegisterModal extends Component {
   }
 }
 
-export default RegisterModal;  
+export default ExampleAdd;  

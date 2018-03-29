@@ -5,7 +5,7 @@ import axios from 'axios';
 import Footer from './footer';
 import Header from './header';
 import Assignment from './example/assignment';
-import RegisterModal from './registerModal';
+import ExampleAdd from './example/exampleAdd';
 import ExampleList from './example/exampleList';
 import ExampleFindOne from './example/exampleFindOne';
 
@@ -22,7 +22,8 @@ class App extends Component {
     examplesNumber: "",
     showList: true,
     showOne: false,
-    selectedExampleId: ""
+    selectedExampleId: "",
+    exampleAdd: false
   }
 
   componentDidMount() {
@@ -51,6 +52,15 @@ class App extends Component {
     console.log(this.state.selectedExampleId);
   }
 
+  exampleAdd = () => {
+    this.setState({
+      exampleAdd: !this.state.exampleAdd
+    })
+    this.setState({
+      showList: !this.state.showList
+    })
+  }
+
   render() {
 
     return (
@@ -63,7 +73,11 @@ class App extends Component {
         examples={this.state.examples}
         selectedExampleId={this.state.selectedExampleId}
         selectExample={this.selectExample} />}
-        <RegisterModal id={this.state.examplesNumber} />
+        {this.state.showList && 
+        <button onClick={this.exampleAdd.bind(this)}>add example</button>}
+        {this.state.exampleAdd && <ExampleAdd 
+        id={this.state.examplesNumber} 
+        exampleAdd={this.exampleAdd}/>}
         <Footer />
       </div>
     );
