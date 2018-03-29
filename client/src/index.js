@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import '../node_modules/mathquill/build/mathquill.js';
-import '../node_modules/mathquill/build/mathquill.css';
 import './index.css';
 import './header.css';
 import './footer.css';

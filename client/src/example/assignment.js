@@ -6,7 +6,7 @@ class Assignment extends Component {
     return (
       <div className="assignment">
         <h1>Example # {this.props.example.id}</h1>
-        <p>{this.props.example.assignment}</p>
+        <p className="problem">{this.props.example.assignment}</p>
         <p>{this.props.example.assignmentText}</p>
       </div>
     );

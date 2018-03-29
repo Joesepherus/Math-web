@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import MathQuill from 'mathquill';
 
 class ExampleAdd extends Component {
   constructor(props) {
@@ -41,13 +42,28 @@ class ExampleAdd extends Component {
     this.props.exampleAdd();
   }
 
+  componentDidMount() {
+    var MQ = MathQuill.getInterface(2);
+    var answerSpan = document.getElementsByClassName('answer');
+    console.log(answerSpan[0]);
+    var answerMathField = MQ.MathField(answerSpan[0], {
+      handlers: {
+        edit: function () {
+          var enteredMath = answerMathField.latex(); // Get entered math in LaTeX format
+          // checkAnswer(enteredMath);
+        }
+      }
+    });
+  }
+
   render() {
     return (
       <div>
         <button onClick={this.back.bind(this)}>back</button>
         <form onSubmit={this.handleSubmit} method="get">
           Assignment:<br />
-          <input type="text"
+          <span type="text"
+            className="answer"
             name="assignment"
             onChange={this.change.bind(this)}
             value={this.state.assignment} /><br />

@@ -10,6 +10,7 @@ class ExampleList extends Component {
       this.props.examples.map(example =>
         <div>
           <ExamplePreview
+            key={example.id}
             example={example}
             selectExample={this.props.selectExample}
           />
