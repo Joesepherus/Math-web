@@ -9,20 +9,12 @@
     "client": "node start-client.js"
   },
   "dependencies": {
-    "asyncawait": "^1.0.6",
     "body-parser": "*",
     "bootstrap": "^4.0.0",
-    "bootstrap-year-calendar": "*",
-    "cheerio": "*",
     "express": "*",
     "jquery": "^3.3.1",
     "mongoose": "*",
-    "node-schedule": "*",
-    "nodemailer": "*",
-    "popper.js": "^1.12.9",
-    "request": "*",
-    "winston": "*",
-    "youtube-api": "^2.0.9"
+    "npm-lifecycle": "^2.0.1"
   },
   "author": "Jozef Maloch",
   "license": "ISC",
