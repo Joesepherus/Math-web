@@ -7,7 +7,35 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/client'));
 const fs = require('fs');
 const env = process.env.NODE_ENV || 'development';
-//mongoose.connect('mongodb://localhost/todolist');
+console.log(process.env);
+
+/* user authentication */
+// _____________________________________________________________________________
+const YOUR_AUTH0_DOMAIN = process.env.YOUR_AUTH0_DOMAIN;
+const YOUR_API_AUDIENCE_ATTRIBUTE =  process.env.YOUR_API_AUDIENCE_ATTRIBUTE;
+
+const jwt = require('express-jwt');
+const jwks = require('jwks-rsa');
+const cors = require('cors');
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
+
+const authCheck = jwt({
+  secret: jwks.expressJwtSecret({
+        cache: true,
+        rateLimit: true,
+        jwksRequestsPerMinute: 5,
+        // YOUR-AUTH0-DOMAIN name e.g prosper.auth0.com
+        jwksUri: "https://" + YOUR_AUTH0_DOMAIN+ "/.well-known/jwks.json"
+    }),
+    // This is the identifier we set when we created the API
+    audience: YOUR_API_AUDIENCE_ATTRIBUTE,
+    issuer: YOUR_AUTH0_DOMAIN,
+    algorithms: ['RS256']
+});
+// _____________________________________________________________________________
+
 var db = mongoose.connection;
 
 const tsFormat = () => (new Date()).toLocaleTimeString();
@@ -29,7 +57,7 @@ mongoose.connect(MONGOLAB_URI, function (error) {
 Problem = require('./models/problem.js');
 
 // display all problems
-app.get('/api/problem', function(req, res){
+app.get('/api/problem', authCheck, function(req, res){
 		Problem.getAllProblems(function(err, allProblems){
 			if(err){
 				throw err;

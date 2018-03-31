@@ -11,8 +11,11 @@
   "dependencies": {
     "body-parser": "*",
     "bootstrap": "^4.0.0",
+    "cors": "^2.8.4",
     "express": "*",
+    "express-jwt": "^5.3.1",
     "jquery": "^3.3.1",
+    "jwks-rsa": "^1.2.1",
     "mongoose": "*",
     "npm-lifecycle": "^2.0.1"
   },

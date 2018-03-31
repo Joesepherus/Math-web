@@ -5,6 +5,9 @@ import Header from './header';
 import ExampleAdd from './example/exampleAdd';
 import ExampleList from './example/exampleList';
 import ExampleFindOne from './example/exampleFindOne';
+import { getExamples } from './utils/math-web-api';
+import Nav from './Nav';
+import { isLoggedIn } from './utils/AuthService';
 
 class App extends Component {
 
@@ -23,8 +26,18 @@ class App extends Component {
     exampleAdd: false
   }
 
+  getExamples() {
+    getExamples().then((examples) => {
+      this.setState({ examples });
+      this.setState({
+        examplesNumber: examples.length +1
+      })
+    });
+  }
+
   componentDidMount() {
-    fetch('/api/problem')
+    this.getExamples();
+    /*fetch('/api/problem')
       .then((response) => response.json())
       .then(examples => {
         this.setState({
@@ -33,7 +46,7 @@ class App extends Component {
         this.setState({
           examples: examples
         })
-      })
+      })*/
   }
 
   selectExample = (exampleId) => {
@@ -60,10 +73,11 @@ class App extends Component {
 
   render() {
 
-    return (
+  return (
       <div className="App" >
         <Header />
-        {this.state.showList && <ExampleList  
+        <Nav />
+        {this.state.showList && isLoggedIn() && <ExampleList  
         examples={this.state.examples} 
         selectExample={this.selectExample} />}
         {this.state.showOne && <ExampleFindOne
